@@ -33,3 +33,10 @@ header.innerText="goodbye";
 header.innerHTML='<h3>Good Bye </h3>';
 header.style.borderBottom='solid 3px red';
 header1.style.borderBottom='solid 3px red';
+// get element by classname
+var items=document.getElementsByClassName('list-group-item');
+console.log(items);
+console.log(items[1]);
+items[1].textContent="hello 3";
+items[1].style.fontweight='bolder';
+items[2].style.backgroundColor="green"
