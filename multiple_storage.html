@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="addForm" onsubmit="saveToLocalStorage(event)">
+        <label>Name</label>
+        <input id="username" type="text" name="username" required/>
+        <label for="">EmailId</label>
+        <input id="emailId" type="email" name="emailId" required/>
+        <label for="">Phone Number</label>
+        <input id="Phonenumber" type="number" name="Phonenumber">
+        <button>Submit</button>
+        <ul id="items" class="list-group">
+
+        </ul>
+    </form>
+    <script>
+          var form=document.getElementById("addForm");
+var itemList=document.getElementById('items');
+
+// form submit event
+form.addEventListener('submit',addItem);
+
+// additem
+function addItem(e){
+    e.preventDefault();
+// get input value 
+var newItem1=document.getElementById('username').value;
+var newItem2=document.getElementById('emailId').value;
+var newItem3=document.getElementById('Phonenumber').value;
+// create new li element
+var li=document.createElement('li');
+var li=document.createElement('li');
+var li=document.createElement('li');
+// li.className="list-group-item";
+// add textnode to input value 
+li.appendChild(document.createTextNode(newItem1));
+li.appendChild(document.createTextNode(newItem2));
+li.appendChild(document.createTextNode(newItem3));
+itemList.appendChild(li);
+itemList.appendChild(li);
+itemList.appendChild(li);
+
+}
+        function saveToLocalStorage(event){
+            event.preventDefault();
+            const name=event.target.username.value;
+            const email=event.target.emailId.value;
+            const Phonenumber=event.target.Phonenumber.value;
+            
+            const myObj={
+                name:name,
+                email:email,
+                Phonenumber:Phonenumber
+            }
+            localStorage.setItem(email,JSON.stringify(myObj))
+        }
+    </script>
+</body>
+</html>
+
+
+<script>
+  
+// creating  a delete button
+// var deleteBtn=document.createElement('button');
+// var EditBtn=document.createElement('button');
+// // add class to button
+// deleteBtn.className="btn btn-danger btn-sm float-right delete";
+// EditBtn.className="btn btn-danger btn-sm float-right edit";
+// // append text node 
+// deleteBtn.appendChild(document.createTextNode('x'));
+// EditBtn.appendChild(document.createTextNode('edit'));
+// // append button to li
+// li.appendChild(deleteBtn);
+// li.appendChild(EditBtn);
+// // append li to list
+// itemList.appendChild(li);
+// itemList.appendChild(li);
+// }
+// }
+</script>
