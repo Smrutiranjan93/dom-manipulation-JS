@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="addForm" onsubmit="saveToLocalStorage(event)">
+      <label>Name</label>
+      <input id="username" type="text" name="username" required />
+      <label for="">EmailId</label>
+      <input id="emailId" type="email" name="emailId" required />
+      <label for="">Phone Number</label>
+      <input id="Phonenumber" type="number" name="number" />
+      <button>Submit</button>
+      <ul id="items" class="list-group"></ul>
+    </form>
+    <script>
+      function saveToLocalStorage(event) {
+        event.preventDefault();
+        var name = event.target.username.value;
+        var email = event.target.emailId.value;
+        var number = event.target.number.value;
+        var myObj = {
+          name,
+          email,
+          number
+        };
+        localStorage.setItem(myObj.email, JSON.stringify(myObj));
+        showUserOnScreen(myObj);
+      }
+      function showUserOnScreen(myObj) {
+        var parentElem = document.getElementById("items");
+        var childElem = document.createElement("li");
+        childElem.textContent =
+          myObj.name + "-" + myObj.email+ "-" + myObj.number ;
+        parentElem.appendChild(childElem);
+        // adding classname
+        var deleteBtn = document.createElement("input");
+        deleteBtn.type = "button";
+        deleteBtn.value = "delete";
+        deleteBtn.onclick = () => {
+          localStorage.removeItem(myObj.email);
+          parentElem.removeChild(childElem);
+        };
+        childElem.appendChild(deleteBtn);
+        parentElem.appendChild(childElem);
+      }
+    </script>
+  </body>
+</html>
