@@ -38,6 +38,12 @@ var li=document.createElement('li');
 var li=document.createElement('li');
 var li=document.createElement('li');
 // li.className="list-group-item";
+// create a delete button
+var deleteBtn=document.createElement('button');
+// adding classname
+deleteBtn.className="btn btn-danger btn-sm float-right delete";
+deleteBtn.appendChild(document.createTextNode('Delete'));
+
 // add textnode to input value 
 li.appendChild(document.createTextNode(newItem1));
 li.appendChild(document.createTextNode(newItem2));
@@ -45,6 +51,7 @@ li.appendChild(document.createTextNode(newItem3));
 itemList.appendChild(li);
 itemList.appendChild(li);
 itemList.appendChild(li);
+li.appendChild(deleteBtn);
 
 }
         function saveToLocalStorage(event){
@@ -59,6 +66,15 @@ itemList.appendChild(li);
                 Phonenumber:Phonenumber
             }
             localStorage.setItem(email,JSON.stringify(myObj))
+
+            deleteBtn.type="button";
+            deleteBtn.value="Delete";
+deleteBtn.onclick=()=>{
+    localStorage.removeItem(email);
+    itemList.removeItem(li);
+}
+li.appendChild(deleteBtn);
+li.appendChild(li)
         }
     </script>
 </body>
